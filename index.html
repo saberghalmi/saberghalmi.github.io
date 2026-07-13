@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saber Ghalmi — Portfolio</title>
+<meta name="description" content="Portfolio de Saber Ghalmi, étudiant ingénieur en Génie Informatique Industrielle — systèmes embarqués, développement full-stack et intelligence artificielle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c1719;
+    --bg-alt:#0f1f22;
+    --surface:#152a2e;
+    --surface-2:#1b3338;
+    --line:#254247;
+    --text:#e9f1ef;
+    --text-muted:#8fa8ab;
+    --text-dim:#5f7c7f;
+    --copper:#c9814a;
+    --copper-soft:rgba(201,129,74,.14);
+    --cyan:#57d6c8;
+    --cyan-soft:rgba(87,214,200,.13);
+    --radius:14px;
+    --maxw:1120px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(87,214,200,.07), transparent 60%),
+      radial-gradient(ellipse 900px 600px at 90% 10%, rgba(201,129,74,.08), transparent 60%);
+  }
+
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  a{color:inherit; text-decoration:none;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  ::selection{background:var(--copper); color:#10181a;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(12,23,25,.72);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{border-bottom-color:var(--line);}
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.05rem;
+    display:flex; align-items:center; gap:9px;
+  }
+  .logo-dot{width:8px; height:8px; border-radius:50%; background:var(--cyan); box-shadow:0 0 12px var(--cyan);}
+  .navlinks{display:flex; gap:2px; align-items:center;}
+  .navlinks a{
+    font-size:.86rem; color:var(--text-muted); padding:8px 14px; border-radius:8px;
+    transition:color .2s ease, background .2s ease;
+    position:relative;
+  }
+  .navlinks a:hover{color:var(--text); background:var(--surface);}
+  .navlinks a.active{color:var(--copper);}
+  .nav-cta{
+    font-size:.82rem !important; border:1px solid var(--line); color:var(--text) !important;
+  }
+  .nav-cta:hover{border-color:var(--copper); background:var(--copper-soft) !important;}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;}
+  .burger span{width:22px; height:2px; background:var(--text);}
+  .mobile-menu{
+    display:none; position:fixed; top:68px; left:0; right:0; bottom:0; z-index:99;
+    background:var(--bg); padding:24px 28px; flex-direction:column; gap:4px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:1.05rem; padding:16px 4px; border-bottom:1px solid var(--line); color:var(--text);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:center;
+    padding-top:110px; padding-bottom:60px; position:relative;
+  }
+  .hero-eyebrow{
+    color:var(--cyan); font-size:.8rem; letter-spacing:.14em; text-transform:uppercase;
+    margin-bottom:22px; display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{content:''; width:28px; height:1px; background:var(--cyan);}
+
+  .waveform-wrap{width:100%; max-width:640px; margin-bottom:8px; opacity:.9;}
+  .waveform-wrap svg{width:100%; height:auto; display:block;}
+  .wave-path{
+    fill:none; stroke:url(#waveGrad); stroke-width:2.4; stroke-linecap:round;
+    stroke-dasharray:1400; stroke-dashoffset:1400;
+    animation:drawWave 2.2s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  @keyframes drawWave{ to{ stroke-dashoffset:0; } }
+  .wave-dot{ fill:var(--copper); filter:drop-shadow(0 0 6px var(--copper)); }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 6.4vw, 4.6rem); line-height:1.02; color:var(--text);
+    margin-bottom:20px; max-width:14ch;
+  }
+  .hero h1 .accent{color:var(--copper);}
+  .hero p.lead{
+    font-size:clamp(1.02rem, 1.6vw, 1.2rem); color:var(--text-muted); max-width:640px; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px;}
+  .btn{
+    font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:.92rem;
+    padding:13px 24px; border-radius:9px; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn-primary{background:var(--copper); color:#14100b;}
+  .btn-primary:hover{transform:translateY(-2px); background:#d99259;}
+  .btn-ghost{border:1px solid var(--line); color:var(--text);}
+  .btn-ghost:hover{transform:translateY(-2px); border-color:var(--cyan); background:var(--cyan-soft);}
+
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:28px; font-size:.85rem; color:var(--text-dim);
+  }
+  .hero-meta span{display:flex; align-items:center; gap:8px;}
+  .hero-meta a{color:var(--text-muted); border-bottom:1px solid transparent; transition:.2s;}
+  .hero-meta a:hover{color:var(--cyan); border-color:var(--cyan);}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:96px 0;}
+  .section-head{margin-bottom:48px; max-width:640px;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:.76rem; letter-spacing:.1em;
+    color:var(--copper); text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem); margin-bottom:14px;}
+  .section-head p{color:var(--text-muted); font-size:1.02rem;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  hr.divider{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* ---------- PROFILE ---------- */
+  #profil .wrap{max-width:760px;}
+  #profil p{font-size:1.06rem; color:var(--text-muted);}
+  #profil p strong{color:var(--text); font-weight:600;}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px;
+  }
+  .skill-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 22px 20px; transition:border-color .25s ease, transform .25s ease;
+  }
+  .skill-card:hover{border-color:var(--copper); transform:translateY(-3px);}
+  .skill-card h3{font-size:1rem; margin-bottom:12px; color:var(--text); display:flex; align-items:center; gap:10px;}
+  .skill-icon{width:9px; height:9px; border-radius:2px; background:var(--cyan); flex:none;}
+  .tags{display:flex; flex-wrap:wrap; gap:7px;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:.74rem; color:var(--text-muted);
+    background:var(--bg-alt); border:1px solid var(--line); padding:5px 10px; border-radius:6px;
+  }
+
+  /* ---------- EXPERIENCE (featured) ---------- */
+  .feature-card{
+    background:linear-gradient(155deg, var(--surface), var(--bg-alt));
+    border:1px solid var(--line); border-radius:20px; padding:40px;
+    display:grid; grid-template-columns:1fr 1.15fr; gap:40px; align-items:center;
+    position:relative; overflow:hidden;
+  }
+  .feature-card::before{
+    content:''; position:absolute; inset:0; opacity:.5; pointer-events:none;
+    background:radial-gradient(circle at 85% 15%, rgba(87,214,200,.12), transparent 55%);
+  }
+  .scan-visual{
+    position:relative; aspect-ratio:1/1; max-width:280px; margin:0 auto;
+  }
+  .scan-visual svg{width:100%; height:100%;}
+  .scan-ring{fill:none; stroke:var(--line);}
+  .scan-ring.active{stroke:var(--cyan); stroke-dasharray:6 10; animation:rotate 22s linear infinite;}
+  @keyframes rotate{ to{ transform:rotate(360deg); } }
+  .scan-core{fill:var(--copper-soft); stroke:var(--copper); stroke-width:1.4;}
+  .scan-line{stroke:var(--cyan); stroke-width:1.5; opacity:.85;}
+
+  .feature-text .badge{
+    display:inline-block; font-family:'JetBrains Mono', monospace; font-size:.72rem;
+    color:var(--cyan); background:var(--cyan-soft); border:1px solid rgba(87,214,200,.3);
+    padding:5px 11px; border-radius:100px; margin-bottom:16px; letter-spacing:.05em;
+  }
+  .feature-text h3{font-size:1.5rem; margin-bottom:6px;}
+  .feature-text .meta{color:var(--text-dim); font-size:.88rem; margin-bottom:18px; font-family:'JetBrains Mono', monospace;}
+  .feature-text ul{list-style:none; margin-bottom:18px;}
+  .feature-text li{
+    color:var(--text-muted); font-size:.96rem; padding-left:20px; position:relative; margin-bottom:9px;
+  }
+  .feature-text li::before{content:'—'; position:absolute; left:0; color:var(--copper);}
+  .feature-text .tags{margin-top:6px;}
+
+  /* ---------- PROJECTS ---------- */
+  .projects-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:22px;
+  }
+  .project-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; display:flex; flex-direction:column; height:100%;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .project-card:hover{transform:translateY(-4px); border-color:var(--cyan);}
+  .project-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; gap:10px;}
+  .project-card h3{font-size:1.12rem; line-height:1.3;}
+  .status{
+    font-family:'JetBrains Mono', monospace; font-size:.7rem; white-space:nowrap;
+    padding:4px 9px; border-radius:100px; flex:none;
+  }
+  .status.wip{color:var(--copper); background:var(--copper-soft); border:1px solid rgba(201,129,74,.3);}
+  .status.done{color:var(--cyan); background:var(--cyan-soft); border:1px solid rgba(87,214,200,.3);}
+  .project-card p{color:var(--text-muted); font-size:.93rem; margin-bottom:16px; flex:1;}
+  .project-card .tags{margin-top:auto;}
+
+  /* ---------- EDUCATION + ACTIVITIES ---------- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .info-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px;
+  }
+  .info-card h3{font-size:1.05rem; margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+  .edu-item{margin-bottom:6px;}
+  .edu-item .role{font-weight:600; color:var(--text);}
+  .edu-item .org{color:var(--text-muted); font-size:.92rem;}
+  .edu-item .when{color:var(--text-dim); font-size:.8rem; font-family:'JetBrains Mono', monospace;}
+
+  .activity-list{list-style:none;}
+  .activity-list li{
+    display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:.92rem; color:var(--text-muted);
+  }
+  .activity-list li:last-child{border-bottom:none;}
+  .activity-list .dot{width:6px; height:6px; border-radius:50%; background:var(--copper); flex:none;}
+  .activity-list strong{color:var(--text); font-weight:600;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  #contact{
+    background:var(--bg-alt); border-top:1px solid var(--line);
+  }
+  .contact-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:32px;
+  }
+  .contact-left h2{font-size:clamp(1.8rem,4vw,2.6rem); margin-bottom:14px;}
+  .contact-left p{color:var(--text-muted); max-width:420px;}
+  .contact-links{display:flex; flex-direction:column; gap:14px;}
+  .contact-links a{
+    display:flex; align-items:center; gap:12px; font-size:.98rem; color:var(--text);
+    padding:12px 18px; background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .contact-links a:hover{border-color:var(--copper); transform:translateX(4px);}
+  .ico{width:16px; height:16px; flex:none; color:var(--cyan);}
+
+  footer.bottom{
+    text-align:center; padding:26px 0; color:var(--text-dim); font-size:.8rem;
+    border-top:1px solid var(--line); font-family:'JetBrains Mono', monospace;
+  }
+
+  @media (max-width:860px){
+    .feature-card{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    .burger{display:flex;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <div class="logo"><span class="logo-dot"></span>Saber Ghalmi</div>
+    <div class="navlinks">
+      <a href="#profil">Profil</a>
+      <a href="#competences">Compétences</a>
+      <a href="#experience">Expérience</a>
+      <a href="#projets">Projets</a>
+      <a href="#formation">Formation</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#profil">Profil</a>
+  <a href="#competences">Compétences</a>
+  <a href="#experience">Expérience</a>
+  <a href="#projets">Projets</a>
+  <a href="#formation">Formation</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-eyebrow">Systèmes embarqués × Full-Stack × IA</div>
+
+    <div class="waveform-wrap" aria-hidden="true">
+      <svg viewBox="0 0 640 120">
+        <defs>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="640" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#57d6c8"/>
+            <stop offset="55%" stop-color="#c9814a"/>
+            <stop offset="100%" stop-color="#57d6c8"/>
+          </linearGradient>
+        </defs>
+        <path class="wave-path" d="M0,60 C20,60 30,20 50,20 C70,20 80,100 100,100 C120,100 130,60 150,60 L230,60 C250,60 260,15 280,15 C300,15 310,105 330,105 C350,105 360,60 380,60 L460,60 C480,60 485,35 500,35 C515,35 520,85 535,85 C545,85 550,60 560,60 L640,60"/>
+        <circle class="wave-dot" cx="637" cy="60" r="4"/>
+      </svg>
+    </div>
+
+    <h1>Je conçois des systèmes, du <span class="accent">capteur</span> au <span class="accent">modèle IA</span>.</h1>
+    <p class="lead">Étudiant en 2ᵉ année de cycle ingénieur en Génie Informatique Industrielle à l'ENET'COM Sfax. Je construis des applications complètes — de l'électronique embarquée jusqu'aux interfaces web pilotées par l'intelligence artificielle.</p>
+
+    <div class="hero-actions">
+      <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+      <a href="CV_Saber_Ghalmi_FR.pdf" class="btn btn-ghost" download>Télécharger le CV</a>
+    </div>
+
+    <div class="hero-meta">
+      <span>📍 Sfax, Tunisie</span>
+      <span>✉ <a href="mailto:ghalmis259@gmail.com">ghalmis259@gmail.com</a></span>
+      <span>📞 <a href="tel:+21648163395">+216 48 163 395</a></span>
+      <span>🔗 <a href="https://www.linkedin.com/in/saber-ghalmi-91b6b0338/" target="_blank" rel="noopener">LinkedIn</a></span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PROFIL -->
+  <section id="profil">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">// Profil</span>
+        <h2>D'un capteur à une interface</h2>
+      </div>
+      <p class="reveal">Ma formation à l'<strong>ENET'COM Sfax</strong> couvre les systèmes embarqués, le traitement du signal, l'électronique et les réseaux — une base solide que je complète par une pratique active du <strong>développement full-stack</strong> et une spécialisation marquée en <strong>développement orienté IA</strong>. Mes projets académiques et mon stage m'ont permis de relier ces deux mondes : concevoir des systèmes qui captent, traitent et donnent du sens aux données, jusqu'à l'interface qui les rend utilisables. Je suis aussi activement engagé dans plusieurs communautés techniques et entrepreneuriales.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- COMPETENCES -->
+  <section id="competences">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">// Compétences</span>
+        <h2>Boîte à outils</h2>
+        <p>Des couches basses du signal jusqu'aux modèles d'intelligence artificielle.</p>
+      </div>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <h3><span class="skill-icon"></span>Langages</h3>
+          <div class="tags">
+            <span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span>
+            <span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">ASM (TMS320C6748)</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3><span class="skill-icon"></span>Développement Web / Full-Stack</h3>
+          <div class="tags">
+            <span class="tag">HTML</span><span class="tag">CSS / Flexbox</span><span class="tag">JS (DOM)</span>
+            <span class="tag">SQL</span><span class="tag">HTTP</span><span class="tag">Flask / Django</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3><span class="skill-icon"></span>Intelligence Artificielle</h3>
+          <div class="tags">
+            <span class="tag">Réseaux de neurones</span><span class="tag">Classification</span>
+            <span class="tag">Apprentissage supervisé</span><span class="tag">Intégration de modèles</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3><span class="skill-icon"></span>Cloud & Virtualisation</h3>
+          <div class="tags">
+            <span class="tag">AWS S3</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span>
+            <span class="tag">Rekognition</span><span class="tag">FusionCompute</span><span class="tag">RAID / SAN / NAS</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3><span class="skill-icon"></span>Systèmes Embarqués & Signal</h3>
+          <div class="tags">
+            <span class="tag">TFTD / Nyquist</span><span class="tag">CAN / CNA</span>
+            <span class="tag">DSP TMS320</span><span class="tag">Électronique de puissance</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3><span class="skill-icon"></span>Outils & Logiciels</h3>
+          <div class="tags">
+            <span class="tag">Unity 2022</span><span class="tag">Kinect v2 SDK</span><span class="tag">LaTeX</span>
+            <span class="tag">Git</span><span class="tag">Arduino / RPi</span><span class="tag">DICOM</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">// Expérience professionnelle</span>
+        <h2>Stage — Imagerie médicale</h2>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="scan-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <circle class="scan-ring" cx="100" cy="100" r="92" stroke-width="1"/>
+            <circle class="scan-ring active" cx="100" cy="100" r="72" stroke-width="1.2"/>
+            <circle class="scan-core" cx="100" cy="100" r="46"/>
+            <path class="scan-line" fill="none" d="M60,100 C72,80 78,120 90,100 C100,84 105,116 115,100 C122,88 128,112 140,100" />
+            <path class="scan-line" fill="none" opacity=".5" d="M60,118 C72,104 78,132 90,118 C100,106 105,130 115,118 C122,108 128,126 140,118" />
+          </svg>
+        </div>
+        <div class="feature-text">
+          <span class="badge">Stage · 2 mois</span>
+          <h3>Développeur — Analyse & visualisation d'images IRM</h3>
+          <div class="meta">Yebni Information et Communication</div>
+          <ul>
+            <li>Conception et développement d'une plateforme web pour l'analyse et la visualisation d'images IRM.</li>
+            <li>Traitement et affichage d'images médicales au format DICOM.</li>
+            <li>Back-end en Python (Flask / Django), interface front-end en JavaScript.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Flask / Django</span><span class="tag">JavaScript</span><span class="tag">DICOM</span><span class="tag">Imagerie médicale</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PROJETS -->
+  <section id="projets">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">// Projets académiques</span>
+        <h2>Projets réalisés</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div class="project-top">
+            <h3>EcoProtector</h3>
+            <span class="status wip">En cours</span>
+          </div>
+          <p>Projet de fin d'année (PFA) — jeu éducatif Unity avec capteur Kinect v2 pour l'interaction corporelle complète, dédié à la sensibilisation au tri des déchets pour les enfants ayant des difficultés d'apprentissage.</p>
+          <div class="tags">
+            <span class="tag">Unity 2022</span><span class="tag">Kinect v2</span><span class="tag">C#</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-top">
+            <h3>Smart Home</h3>
+            <span class="status done">Projet académique</span>
+          </div>
+          <p>Système domotique intelligent pour le contrôle et l'automatisation d'équipements connectés, avec intégration de capteurs et logique de commande pour la gestion à distance d'un habitat.</p>
+          <div class="tags">
+            <span class="tag">IoT</span><span class="tag">Capteurs</span><span class="tag">Automatisation</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-top">
+            <h3>Pipeline Serverless — AWS</h3>
+            <span class="status done">Projet académique</span>
+          </div>
+          <p>Architecture serverless de traitement d'images basée sur S3, Lambda et DynamoDB, avec simulation Rekognition. Démonstration web fonctionnelle et présentation du pipeline complet.</p>
+          <div class="tags">
+            <span class="tag">AWS S3</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-top">
+            <h3>Gestion des Inscriptions</h3>
+            <span class="status done">Projet académique</span>
+          </div>
+          <p>Plateforme web pour la gestion des inscriptions d'une école coranique — conception des fonctionnalités, réalisation du front-end et présentation complète du projet.</p>
+          <div class="tags">
+            <span class="tag">Web</span><span class="tag">Front-end</span><span class="tag">Gestion</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FORMATION + ACTIVITES -->
+  <section id="formation">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">// Formation & engagements</span>
+        <h2>Parcours & communautés</h2>
+      </div>
+
+      <div class="split">
+        <div class="info-card reveal">
+          <h3><span class="skill-icon"></span>Formation</h3>
+          <div class="edu-item">
+            <div class="role">Cycle Ingénieur — Génie Informatique Industrielle (2GII)</div>
+            <div class="org">ENET'COM — École Nationale d'Électronique et des Télécommunications de Sfax</div>
+            <div class="when">2ᵉ année, en cours</div>
+          </div>
+          <br>
+          <div class="edu-item">
+            <div class="role">Certificat en Entrepreneuriat</div>
+            <div class="org">En cours</div>
+          </div>
+        </div>
+
+        <div class="info-card reveal">
+          <h3><span class="skill-icon"></span>Activités & Certifications</h3>
+          <ul class="activity-list">
+            <li><span class="dot"></span><span><strong>IEEE</strong> — Membre actif</span></li>
+            <li><span class="dot"></span><span><strong>Google Developer Group (GDG)</strong> — Membre</span></li>
+            <li><span class="dot"></span><span><strong>Radio ENET'COM (Orbeat's)</strong> — Membre</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact-inner">
+    <div class="contact-left reveal">
+      <h2>Discutons.</h2>
+      <p>Ouvert aux opportunités de stage et de collaboration autour du développement full-stack, des systèmes embarqués et de l'IA.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:ghalmis259@gmail.com"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>ghalmis259@gmail.com</a>
+      <a href="tel:+21648163395"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+216 48 163 395</a>
+      <a href="https://www.linkedin.com/in/saber-ghalmi-91b6b0338/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12"/><path d="M10 13a4 4 0 0 1 8 0v8"/></svg>LinkedIn</a>
+    </div>
+  </div>
+  <footer class="bottom">© 2026 Saber Ghalmi — ENET'COM Sfax</footer>
+</section>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('main section[id], #contact');
+  const navLinks = document.querySelectorAll('.navlinks a[href^="#"]');
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.5, rootMargin: '-80px 0px -60% 0px' });
+  sections.forEach(sec => navIO.observe(sec));
+</script>
+
+</body>
+</html>
