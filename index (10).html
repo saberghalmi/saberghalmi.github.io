@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saber Ghalmi — Portfolio</title>
-<meta name="description" content="Portfolio de Saber Ghalmi, AI Engineer | Python Developer | LLMs • RAG • Django • Machine Learning.">
+<meta name="description" content="Portfolio de Saber Ghalmi, Ingénieur Data &amp; IA | LLMs • RAG • Python • SAP (iPaaS) • Odoo • Spring Boot.">
 
 <!-- Open Graph / aperçu de lien (LinkedIn, WhatsApp, Facebook...) -->
 <meta property="og:title" content="Saber Ghalmi — Portfolio">
-<meta property="og:description" content="Portfolio de Saber Ghalmi, AI Engineer | Python Developer | LLMs • RAG • Django • Machine Learning">
+<meta property="og:description" content="Portfolio de Saber Ghalmi, Ingénieur Data &amp; IA | LLMs • RAG • Python • SAP (iPaaS) • Odoo • Spring Boot">
 <meta property="og:image" content="https://saberghalmi.github.io/profile.jpg">
 <meta property="og:url" content="https://saberghalmi.github.io/">
 <meta property="og:type" content="website">
@@ -314,6 +314,62 @@
     border-top:1px solid var(--line); font-family:'JetBrains Mono', monospace;
   }
 
+
+  /* ---------- HERO BADGES ---------- */
+  .hero-badges{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:34px;}
+  .hbadge{
+    font-family:'JetBrains Mono', monospace; font-size:.76rem; padding:7px 13px; border-radius:100px;
+    border:1px solid var(--line); color:var(--text-muted); background:var(--surface);
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .hbadge i{width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan);}
+  .hbadge.sap{border-color:rgba(87,214,200,.35); color:var(--cyan);}
+  .hbadge.odoo{border-color:rgba(201,129,74,.4); color:var(--copper);}
+  .hbadge.odoo i{background:var(--copper); box-shadow:0 0 8px var(--copper);}
+
+  .skill-card.hl{border-color:rgba(201,129,74,.45); background:linear-gradient(160deg, var(--surface), var(--surface-2));}
+  .feature-card + .feature-card{margin-top:28px;}
+
+  /* ---------- ERP : SAP & ODOO ---------- */
+  .erp-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(420px, 1fr)); gap:24px;}
+  .erp-card{
+    position:relative; overflow:hidden; border-radius:20px; padding:34px;
+    background:linear-gradient(155deg, var(--surface), var(--bg-alt));
+    border:1px solid var(--line); transition:transform .3s ease, border-color .3s ease;
+    display:flex; flex-direction:column;
+  }
+  .erp-card::before{
+    content:''; position:absolute; inset:0; pointer-events:none; opacity:.9;
+    background:radial-gradient(circle at 90% 0%, var(--glow), transparent 55%);
+  }
+  .erp-card:hover{transform:translateY(-5px); border-color:var(--accent);}
+  .erp-card.sap{--accent:var(--cyan); --glow:rgba(87,214,200,.16);}
+  .erp-card.odoo{--accent:var(--copper); --glow:rgba(201,129,74,.18);}
+  .erp-card > *{position:relative;}
+  .erp-top{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:20px; flex-wrap:wrap;}
+  .erp-mark{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.7rem; letter-spacing:.02em; color:var(--accent);
+  }
+  .erp-pill{
+    font-family:'JetBrains Mono', monospace; font-size:.72rem; color:var(--accent);
+    border:1px solid var(--accent); padding:5px 11px; border-radius:100px; background:rgba(0,0,0,.18);
+  }
+  .erp-card h3{font-size:1.2rem; margin-bottom:6px;}
+  .erp-card .meta{color:var(--text-dim); font-size:.82rem; font-family:'JetBrains Mono', monospace; margin-bottom:18px;}
+  .erp-diagram{margin:2px 0 20px; background:rgba(0,0,0,.18); border:1px solid var(--line); border-radius:14px; padding:14px;}
+  .erp-diagram svg{width:100%; height:auto; display:block;}
+  .erp-node{fill:var(--surface-2); stroke:var(--accent); stroke-width:1.2;}
+  .erp-node.soft{stroke:var(--line);}
+  .erp-text{fill:var(--text); font-family:'JetBrains Mono', monospace; font-size:11px; text-anchor:middle;}
+  .erp-text.dim{fill:var(--text-muted); font-size:9.5px;}
+  .erp-flow{stroke:var(--accent); stroke-width:1.6; fill:none; stroke-dasharray:5 6; animation:flow 1.6s linear infinite;}
+  @keyframes flow{ to{ stroke-dashoffset:-22; } }
+  .erp-card ul{list-style:none; margin-bottom:18px; flex:1;}
+  .erp-card li{color:var(--text-muted); font-size:.95rem; padding-left:20px; position:relative; margin-bottom:9px;}
+  .erp-card li::before{content:'—'; position:absolute; left:0; color:var(--accent);}
+  .erp-card .tag{border-color:var(--line);}
+  @media (max-width:520px){ .erp-grid{grid-template-columns:1fr;} .erp-card{padding:24px;} }
+
   @media (max-width:860px){
     .feature-card{grid-template-columns:1fr;}
     .split{grid-template-columns:1fr;}
@@ -333,6 +389,7 @@
       <a href="#profil">Profil</a>
       <a href="#competences">Compétences</a>
       <a href="#experience">Expérience</a>
+      <a href="#erp">SAP &amp; Odoo</a>
       <a href="#projets">Projets</a>
       <a href="#formation">Formation</a>
       <a href="#contact" class="nav-cta">Contact</a>
@@ -347,6 +404,7 @@
   <a href="#profil">Profil</a>
   <a href="#competences">Compétences</a>
   <a href="#experience">Expérience</a>
+  <a href="#erp">SAP &amp; Odoo</a>
   <a href="#projets">Projets</a>
   <a href="#formation">Formation</a>
   <a href="#contact">Contact</a>
@@ -358,7 +416,7 @@
   <section class="hero wrap">
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-eyebrow">Systèmes embarqués × Full-Stack × IA</div>
+        <div class="hero-eyebrow">Data × IA × ERP</div>
 
         <div class="waveform-wrap" aria-hidden="true">
           <svg viewBox="0 0 640 120">
@@ -375,17 +433,24 @@
         </div>
 
         <h1>Je conçois des systèmes, du <span class="accent">capteur</span> au <span class="accent">modèle IA</span>.</h1>
-        <p class="lead">Étudiant en 3ᵉ année (dernier semestre)Étudiant en cycle ingénieur en Génie Informatique Industrielle à l'ENET'COM de Sfax. Passionné par l'intelligence artificielle et le développement logiciel, je conçois des applications web modernes et des solutions basées sur les LLMs, le RAG et l'IA générative.</p>
+        <p class="lead">Étudiant en dernière année du cycle ingénieur en Génie Informatique Industrielle à l'ENET'COM de Sfax. Je conçois des agents IA (LLMs, RAG) et des pipelines de données fiables, de la donnée brute jusqu'aux solutions prêtes pour l'IA, et je maîtrise les ERP et l'intégration d'entreprise (SAP, Odoo).</p>
 
         <div class="hero-actions">
           <a href="#projets" class="btn btn-primary">Voir mes projets</a>
           <a href="CV_Saber_Ghalmi_FR.pdf" class="btn btn-ghost" download>Télécharger le CV</a>
         </div>
 
+        <div class="hero-badges">
+          <a class="hbadge sap" href="#erp"><i></i>SAP Learning · Cloud Platform Integration · Oct. 2026</a>
+          <a class="hbadge odoo" href="#erp"><i></i>Odoo × Docker</a>
+        </div>
+
         <div class="hero-meta">
           <span>📍 Sfax, Tunisie</span>
           <span>✉ <a href="mailto:ghalmis259@gmail.com">ghalmis259@gmail.com</a></span>
+          <span>✉ <a href="mailto:stage.ghalmi@gmail.com">stage.ghalmi@gmail.com</a></span>
           <span>📞 <a href="tel:+21648163395">+216 48 163 395</a></span>
+          <span>💻 <a href="https://github.com/saberghalmi" target="_blank" rel="noopener">GitHub</a></span>
           <span>🔗 <a href="https://www.linkedin.com/in/saber-ghalmi-b8556338b/" target="_blank" rel="noopener">LinkedIn</a></span>
         </div>
       </div>
@@ -406,7 +471,7 @@
         <h2>D'un capteur à une interface</h2>
       </div>
       <p class="reveal">
-Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solides compétences en systèmes embarqués, développement logiciel et réseaux. En parallèle, je me suis spécialisé dans le <strong>développement full-stack</strong> et les technologies d'<strong>intelligence artificielle</strong>, notamment les <strong>LLMs</strong>, le <strong>RAG</strong> et les applications d'IA générative. À travers mes projets académiques, mon stage et mes réalisations personnelles, je conçois des solutions intelligentes capables de collecter, traiter et valoriser les données jusqu'à la création d'interfaces web modernes et intuitives. Je participe également activement à plusieurs communautés techniques et entrepreneuriales afin de développer mes compétences et de rester à l'écoute des dernières innovations.
+Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solides compétences en systèmes embarqués, développement logiciel et réseaux. Je me suis ensuite spécialisé en <strong>ingénierie des données</strong> et en <strong>IA appliquée</strong> : agents <strong>LLM</strong>, <strong>RAG</strong>, validation et normalisation de données. Lors de mon stage chez <strong>Amsys Consulting</strong>, j'ai conçu une couche de normalisation de données automobiles indépendante du constructeur. Je maîtrise également l'<strong>intégration d'entreprise</strong> : certification <strong>SAP</strong> (iPaaS, API Management) et déploiement d'<strong>Odoo</strong> avec Docker. Je participe également à plusieurs communautés techniques et entrepreneuriales pour rester à l'écoute des dernières innovations.
 </p>
     </div>
   </section>
@@ -419,7 +484,7 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
       <div class="section-head reveal">
         <span class="eyebrow">// Compétences</span>
         <h2>Boîte à outils</h2>
-        <p>Des couches basses du signal jusqu'aux modèles d'intelligence artificielle.</p>
+        <p>Des couches basses du signal jusqu'aux modèles d'IA et à l'intégration ERP.</p>
       </div>
       <div class="skills-grid">
 
@@ -432,10 +497,10 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
         </div>
 
         <div class="skill-card reveal">
-          <h3><span class="skill-icon"></span>Développement Web / Full-Stack</h3>
+          <h3><span class="skill-icon"></span>Développement Web</h3>
           <div class="tags">
             <span class="tag">HTML</span><span class="tag">CSS / Flexbox</span><span class="tag">JS (DOM)</span>
-            <span class="tag">SQL</span><span class="tag">HTTP</span><span class="tag">Flask / Django</span>
+            <span class="tag">SQL</span><span class="tag">HTTP</span><span class="tag">Flask / Django</span><span class="tag">Spring Boot</span>
           </div>
         </div>
 
@@ -443,15 +508,29 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
           <h3><span class="skill-icon"></span>Intelligence Artificielle</h3>
           <div class="tags">
             <span class="tag">Réseaux de neurones</span><span class="tag">Classification</span>
-            <span class="tag">Apprentissage supervisé</span><span class="tag">Agents LangChain</span>
+            <span class="tag">Apprentissage supervisé</span><span class="tag">Agents LangChain</span><span class="tag">RAG</span><span class="tag">Ollama</span><span class="tag">Gemini</span><span class="tag">Prompt design</span>
           </div>
         </div>
 
         <div class="skill-card reveal">
-          <h3><span class="skill-icon"></span>Cloud & Virtualisation</h3>
+          <h3><span class="skill-icon"></span>Cloud, DevOps & Virtualisation</h3>
           <div class="tags">
             <span class="tag">AWS S3</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span>
-            <span class="tag">Rekognition</span><span class="tag">FusionCompute</span><span class="tag">RAID / SAN / NAS</span>
+            <span class="tag">Rekognition</span><span class="tag">Docker</span><span class="tag">Docker Compose</span><span class="tag">CI/CD</span><span class="tag">PostgreSQL</span><span class="tag">FusionCompute</span><span class="tag">RAID / SAN / NAS</span>
+          </div>
+        </div>
+
+        <div class="skill-card hl reveal">
+          <h3><span class="skill-icon" style="background:var(--copper)"></span>ERP & Intégration</h3>
+          <div class="tags">
+            <span class="tag">SAP Integration</span><span class="tag">iPaaS</span><span class="tag">API Management</span><span class="tag">Odoo</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <h3><span class="skill-icon"></span>Données & Qualité</h3>
+          <div class="tags">
+            <span class="tag">Pandas</span><span class="tag">Pydantic v2</span><span class="tag">JSON Schema</span><span class="tag">UML</span><span class="tag">Normalisation</span>
           </div>
         </div>
 
@@ -482,7 +561,35 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">// Expérience professionnelle</span>
-        <h2>Stage — Imagerie médicale</h2>
+        <h2>Stages</h2>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="scan-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <circle class="scan-ring" cx="100" cy="100" r="92" stroke-width="1"/>
+            <circle class="scan-ring active" cx="100" cy="100" r="72" stroke-width="1.2"/>
+            <rect x="22" y="86" width="34" height="28" rx="6" class="scan-core"/>
+            <rect x="76" y="78" width="48" height="44" rx="8" class="scan-core" style="fill:var(--cyan-soft);stroke:var(--cyan)"/>
+            <rect x="144" y="86" width="34" height="28" rx="6" class="scan-core"/>
+            <path class="scan-line" fill="none" d="M56,100 L76,100"/>
+            <path class="scan-line" fill="none" d="M124,100 L144,100"/>
+            <text x="100" y="104" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#e9f1ef">normalize</text>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <span class="badge">Stage d'été 2026 · 2 mois</span>
+          <h3>Développeur 3 — Architecte de données automobiles</h3>
+          <div class="meta">Amsys Consulting · Paris, France</div>
+          <ul>
+            <li>Conception d'une couche de normalisation indépendante du constructeur : valeurs décodées des véhicules → mesures qualifiées pour le stockage, le diagnostic, l'analyse et l'IA (équipe de 4).</li>
+            <li>Modélisation UML des entités principales et convention de taxonomie et d'unités <span class="mono">domaine.sous-système.grandeur</span> (thermique, hybride, électrique).</li>
+            <li>Modèles <span class="mono">Measurement</span> / <span class="mono">DataQuality</span> et service de validation <span class="mono">VehicleDataNormalizer</span> en Python (Pydantic v2), avec schémas JSON et documentation.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Pydantic v2</span><span class="tag">UML</span><span class="tag">JSON Schema</span><span class="tag">Data Quality</span>
+          </div>
+        </div>
       </div>
 
       <div class="feature-card reveal">
@@ -496,7 +603,7 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
           </svg>
         </div>
         <div class="feature-text">
-          <span class="badge">Stage · 2 mois</span>
+          <span class="badge">Stage d'été · 2 mois</span>
           <h3>Développeur — Analyse & visualisation d'images IRM</h3>
           <div class="meta">Yebni Information et Communication</div>
           <ul>
@@ -508,6 +615,82 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
             <span class="tag">Python</span><span class="tag">Flask / Django</span><span class="tag">JavaScript</span><span class="tag">DICOM</span><span class="tag">Imagerie médicale</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SAP & ODOO -->
+  <section id="erp">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">// ERP & Intégration</span>
+        <h2>SAP & Odoo</h2>
+        <p>Intégrer, connecter et déployer : de l'iPaaS SAP à un ERP Odoo conteneurisé.</p>
+      </div>
+
+      <div class="erp-grid">
+
+        <article class="erp-card sap reveal">
+          <div class="erp-top">
+            <span class="erp-mark">SAP</span>
+            <span class="erp-pill">Certification · Oct. 2026</span>
+          </div>
+          <h3>SAP Cloud Platform Integration — Service Overview</h3>
+          <div class="meta">SAP Learning · niveau intermédiaire</div>
+          <div class="erp-diagram" aria-hidden="true">
+            <svg viewBox="0 0 400 110">
+              <rect class="erp-node soft" x="6" y="34" width="86" height="42" rx="9"/>
+              <text class="erp-text" x="49" y="59">Application</text>
+              <rect class="erp-node" x="150" y="22" width="100" height="66" rx="11"/>
+              <text class="erp-text" x="200" y="50">iPaaS</text>
+              <text class="erp-text dim" x="200" y="68">Integration</text>
+              <rect class="erp-node soft" x="308" y="34" width="86" height="42" rx="9"/>
+              <text class="erp-text" x="351" y="59">API</text>
+              <path class="erp-flow" d="M92,55 L150,55"/>
+              <path class="erp-flow" d="M250,55 L308,55"/>
+            </svg>
+          </div>
+          <ul>
+            <li>Validation des compétences en plateformes d'intégration et iPaaS.</li>
+            <li>Gestion d'API (API Management) : exposer, sécuriser et piloter les échanges entre systèmes.</li>
+            <li>Complète mon profil data &amp; IA pour les projets d'intégration d'entreprise.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Integration Platforms</span><span class="tag">iPaaS</span><span class="tag">API Management</span><span class="tag">SAP Learning</span>
+          </div>
+        </article>
+
+        <article class="erp-card odoo reveal">
+          <div class="erp-top">
+            <span class="erp-mark">Odoo</span>
+            <span class="erp-pill">Projet · Docker Compose</span>
+          </div>
+          <h3>Odoo conteneurisé avec Docker</h3>
+          <div class="meta">Déploiement et prise en main ERP</div>
+          <div class="erp-diagram" aria-hidden="true">
+            <svg viewBox="0 0 400 110">
+              <rect class="erp-node soft" x="4" y="6" width="392" height="98" rx="12" stroke-dasharray="4 5"/>
+              <text class="erp-text dim" x="52" y="21">docker compose</text>
+              <rect class="erp-node" x="26" y="34" width="110" height="44" rx="9"/>
+              <text class="erp-text" x="81" y="60">Odoo</text>
+              <rect class="erp-node" x="264" y="34" width="110" height="44" rx="9"/>
+              <text class="erp-text" x="319" y="60">PostgreSQL</text>
+              <path class="erp-flow" d="M136,56 L264,56"/>
+              <text class="erp-text dim" x="81" y="96">volume : config</text>
+              <text class="erp-text dim" x="319" y="96">volume : données</text>
+            </svg>
+          </div>
+          <ul>
+            <li>Instance Odoo déployée avec Docker et Docker Compose (Odoo + PostgreSQL), avec volumes persistants pour les données et la configuration.</li>
+            <li>Initialisation de la base de données, installation et configuration des modules Odoo pour maîtriser le fonctionnement de l'ERP.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Odoo</span><span class="tag">Docker</span><span class="tag">Docker Compose</span><span class="tag">PostgreSQL</span>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -548,11 +731,11 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
         <div class="project-card reveal">
           <div class="project-top">
             <h3>MemoBot</h3>
-            <span class="status wip">En cours</span>
+            <span class="status done">Projet personnel</span>
           </div>
           <p>Chatbot IA avec mémoire persistante entre les sessions, construit avec LangChain — permet de garder le contexte des conversations précédentes pour des échanges plus naturels et personnalisés.</p>
           <div class="tags">
-            <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Streamlit</span><span class="tag">Mémoire conversationnelle</span>
+            <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Ollama</span><span class="tag">Streamlit</span><span class="tag">Mémoire conversationnelle</span>
           </div>
           <div class="project-links">
             <a href="https://github.com/saberghalmi/memobot" target="_blank" rel="noopener">
@@ -568,8 +751,30 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
 
         <div class="project-card reveal">
           <div class="project-top">
+            <h3>RAG Document Assistant</h3>
+            <span class="status done">Projet personnel</span>
+          </div>
+          <p>Agent RAG qui ingère des PDF, les découpe en segments, les vectorise et les stocke dans une base vectorielle, puis génère des réponses fondées sur les passages retrouvés, ce qui limite les hallucinations.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Embeddings</span><span class="tag">FAISS / Chroma</span><span class="tag">Gemini / Ollama</span><span class="tag">Streamlit</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-top">
+            <h3>ML Model Builder Agent</h3>
+            <span class="status done">Projet personnel</span>
+          </div>
+          <p>Agent qui prend un jeu de données CSV, le nettoie et l'encode, puis entraîne et compare plusieurs modèles (Random Forest, régression logistique…) avec métriques (accuracy, F1, matrice de confusion) et recommandation du meilleur modèle.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">LangChain</span><span class="tag">Streamlit</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-top">
             <h3>EcoProtector</h3>
-            <span class="status wip">En cours</span>
+            <span class="status done">Projet académique</span>
           </div>
           <p>Projet de fin d'année (PFA) — jeu éducatif Unity avec capteur Kinect v2 pour l'interaction corporelle complète, dédié à la sensibilisation au tri des déchets pour les enfants ayant des difficultés d'apprentissage.</p>
           <div class="tags">
@@ -660,6 +865,7 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
         <div class="info-card reveal">
           <h3><span class="skill-icon"></span>Activités & Certifications</h3>
           <ul class="activity-list">
+            <li><span class="dot"></span><span><strong>SAP Learning</strong> — Cloud Platform Integration Service Overview · Oct. 2026</span></li>
             <li><span class="dot"></span><span><strong>IEEE</strong> — Membre actif</span></li>
             <li><span class="dot"></span><span><strong>Google Developer Group (GDG)</strong> — Membre</span></li>
             <li><span class="dot"></span><span><strong>Radio ENET'COM (Orbeat's)</strong> — Membre</span></li>
@@ -676,11 +882,13 @@ Ma formation à l'<strong>ENET'COM Sfax</strong> m'a permis d'acquérir de solid
   <div class="wrap contact-inner">
     <div class="contact-left reveal">
       <h2>Discutons.</h2>
-      <p>Ouvert aux opportunités de stage et de collaboration autour du développement full-stack, des systèmes embarqués et de l'IA.</p>
+      <p>Ouvert aux opportunités et aux collaborations autour de la data &amp; IA, de l'intégration SAP et d'Odoo.</p>
     </div>
     <div class="contact-links reveal">
       <a href="mailto:ghalmis259@gmail.com"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>ghalmis259@gmail.com</a>
+      <a href="mailto:stage.ghalmi@gmail.com"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>stage.ghalmi@gmail.com</a>
       <a href="tel:+21648163395"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+216 48 163 395</a>
+      <a href="https://github.com/saberghalmi" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.29 9.29 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>github.com/saberghalmi</a>
       <a href="https://www.linkedin.com/in/saber-ghalmi-b8556338b/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12"/><path d="M10 13a4 4 0 0 1 8 0v8"/></svg>LinkedIn</a>
     </div>
   </div>
